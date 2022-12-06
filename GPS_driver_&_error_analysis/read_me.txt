@@ -1,0 +1,1 @@
+Use the python code in "/src/gps_driver/python" for gps puck data extraction. For error analysis refer to the jupyter notebook file in "src/analysis-scripts".
