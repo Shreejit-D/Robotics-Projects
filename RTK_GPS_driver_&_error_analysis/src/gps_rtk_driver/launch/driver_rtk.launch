@@ -1,0 +1,3 @@
+<launch>
+	<node pkg="gps_rtk_driver" name="driver_rtk" type="driver_rtk.py" args="$(arg port)" output="screen"/>
+</launch>

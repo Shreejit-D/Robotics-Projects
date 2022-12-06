@@ -1,0 +1,1 @@
+Use the python code in "/src/gps_rtk_driver/scripts" for RTK gps data extraction. For error analysis refer to the jupyter notebook file in "src/gps_rtk_driver/analysis".
