@@ -1,4 +1,4 @@
-# Quadrotor PD Controller
+# Linear quadrotor PD Controller
 
 ## Introduction
 
@@ -17,10 +17,10 @@ $$
 $$
 
 Where:
-- \( \ddot{z} \) is the acceleration in the z-direction,
-- \( u \) is the control input (thrust),
-- \( m \) is the mass of the quadrotor,
-- \( g \) is the gravitational acceleration.
+- `z''` is the acceleration in the z-direction,
+- `u` is the control input (thrust),
+- `m` is the mass of the quadrotor,
+- `g` is the gravitational acceleration.
 
 The PD controller for the height is defined as:
 
@@ -29,15 +29,15 @@ u = m \left(\ddot{z}_{des} + K_p e + K_v \dot{e} + g\right)
 $$
 
 Where:
-- \( e = z_{des} - z \) is the position error,
-- \( \dot{e} = \dot{z}_{des} - \dot{z} \) is the velocity error,
-- \( K_p \) is the proportional gain,
-- \( K_v \) is the derivative gain.
+- `e = z_des - z` is the position error,
+- `e' = z'_des - z'` is the velocity error,
+- `Kp` is the proportional gain,
+- `Kv` is the derivative gain.
 
 ## Tasks
 
 1. **Implement the PD Controller**: Develop the PD controller in `controller.m` to control the height of the quadrotor.
-2. **Tune the Gains**: Adjust the proportional gain \( K_p \) and derivative gain \( K_v \) until the quadrotor converges quickly and smoothly to the desired step response input.
+2. **Tune the Gains**: Adjust the proportional gain (`Kp`) and derivative gain (`Kv`) until the quadrotor converges quickly and smoothly to the desired step response input.
 
 ## Files Included
 
@@ -49,6 +49,9 @@ Where:
 - `fixed_set_point.m`: Script to test step response.
 - `utils/`: Directory containing helper functions for the quadrotor simulator.
 
+## Conclusion
+
+This project provides hands-on experience with implementing a PD controller to manage the height of a quadrotor. By adjusting the gains appropriately, you can achieve a stable and responsive control system. This exercise also enhances your understanding of quadrotor dynamics and MATLAB-based simulation.
 ## Conclusion
 
 This project provides hands-on experience with implementing a PD controller to manage the height of a quadrotor. By adjusting the gains appropriately, you can achieve a stable and responsive control system. This exercise also enhances your understanding of quadrotor dynamics and MATLAB-based simulation.
