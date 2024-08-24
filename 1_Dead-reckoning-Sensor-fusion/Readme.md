@@ -1,4 +1,4 @@
-# Lab 4: Sensor Fusion and Dead Reckoning
+Sensor Fusion and Dead Reckoning
 
 This project focuses on implementing sensor fusion and performing dead reckoning using IMU sensor data. The lab is divided into two main parts:
 
