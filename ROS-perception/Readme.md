@@ -4,6 +4,8 @@
 
 This project implements a basic computer vision system to detect and track a tennis ball using ROS (Robot Operating System) and OpenCV. The system processes video frames to identify the tennis ball based on its color and shape and then draws contours around the detected ball. The project includes two main components: an image publisher and an image processing node.
 
+![Ball_tracking_CV](https://github.com/user-attachments/assets/76b78253-7258-4f7a-837a-0dc73641fd93)
+
 ## System Overview
 
 The system consists of two primary ROS nodes:
