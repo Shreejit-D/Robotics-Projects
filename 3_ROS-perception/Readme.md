@@ -1,9 +1,4 @@
 # Tennis Ball Detection using ROS and OpenCV
-
-### Author: Shreejit Gajanan Deshmukh  
-**Project**: Tennis Ball Detection using ROS and OpenCV  
-**NUID**: 002767657  
-
 ---
 
 ## Project Overview
