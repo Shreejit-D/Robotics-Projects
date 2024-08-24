@@ -4,6 +4,8 @@
 
 This project involves analyzing GNSS data collected using a GPS puck under two different scenarios:
 
+<img src="https://qph.cf2.quoracdn.net/main-qimg-f554a5f5aca2948ba1d013695f8abadb" alt="Description of GIF" width="500" height="300">
+
 A. **Stationary**: The GPS puck is held in a fixed position to check the stability and consistency of the position readings over time.
 
 B. **Walking Straight for 100 Meters**: The GPS puck is carried while walking in a straight line for a recorded distance of approximately 100 meters.
