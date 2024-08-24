@@ -1,3 +1,0 @@
-<launch>
-  <node name="driver" pkg="imu_driver" type="driver.py" args="$(arg port)" output="screen"/>
-</launch>
