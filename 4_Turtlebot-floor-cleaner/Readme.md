@@ -1,4 +1,4 @@
-# Turtlesim Motion Control with ROS
+# Turtlesim Trajectory Planner with ROS
 
 ## Introduction
 
