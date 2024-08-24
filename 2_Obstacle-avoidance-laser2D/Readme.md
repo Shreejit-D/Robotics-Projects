@@ -1,50 +1,46 @@
-# Tennis Ball Detection using ROS and OpenCV
+# LaserScan Processing and Obstacle Avoidance for ROS
 
-## Introduction
+This project implements a ROS (Robot Operating System) node for processing laser scan data from a robot's LIDAR sensor to detect obstacles and control the robot's movement. The node subscribes to the `/scan` topic, processes the incoming laser scan data to identify the minimum and maximum distances to obstacles, and commands the robot to move or rotate based on this information.
 
-This project implements a basic computer vision system to detect and track a tennis ball using ROS (Robot Operating System) and OpenCV. The system processes video frames to identify the tennis ball based on its color and shape and then draws contours around the detected ball. The project includes two main components: an image publisher and an image processing node.
+## Features
 
-![Ball_tracking_CV](https://github.com/user-attachments/assets/76b78253-7258-4f7a-837a-0dc73641fd93)
+- **LaserScan Data Processing**: The node calculates the minimum, maximum, and average distance values from the LIDAR scan data and identifies the field of view.
+- **Obstacle Avoidance**: The robot adjusts its speed and direction based on the proximity of obstacles, ensuring safe navigation. The node includes two behaviors:
+  - **Behavior 1**: Moves the robot forward with proportional speed control based on the distance to obstacles.
+  - **Behavior 2**: Forces the robot to rotate until it finds open space when an obstacle is too close.
+- **Field of View Calculation**: The field of view is calculated from the scan data, helping to determine the relevant scan angles for obstacle detection.
+- **Modular Functions**: The project includes various helper functions to calculate minimum and maximum ranges, average values, and control movement based on these values.
 
-## System Overview
+## Code Overview
 
-The system consists of two primary ROS nodes:
+### Main Components
 
-1. **Image Publisher Node**: Captures video frames and publishes them to a ROS topic.
-2. **Image Processing Node**: Subscribes to the image topic, processes the frames to detect the tennis ball, and draws contours around it.
+- **scan_callback(scan_data)**: Processes the LIDAR scan data to extract minimum, maximum, and average range values, and identifies the closest obstacles within a specified field of view.
+- **move(avoid_obstacle)**: Controls the forward movement of the robot, with speed adjustments based on the distance to the nearest obstacle. If an obstacle is too close, it triggers the rotate behavior.
+- **rotate(avoid_obstacle)**: Rotates the robot to find a clear path when an obstacle is detected within close range.
 
-## Functional Modules
+### Helper Functions
 
-### 1. Image Publisher Node
+- **min_range_index(ranges)**: Finds the minimum range value and its index from the LIDAR scan data.
+- **max_range_index(ranges)**: Finds the maximum range value and its index from the LIDAR scan data.
+- **average_range(ranges)**: Calculates the average distance from the LIDAR scan data.
+- **average_between_indices(ranges, i, j)**: Calculates the average distance between two specified indices in the LIDAR scan data.
+- **min_dist_in_view(ranges, angle)**: Finds the minimum distance within a specified field of view.
 
-The image publisher node captures video frames from a pre-recorded video file and publishes these frames to the `tennis_ball_image` ROS topic.
+## Running the Node
 
-- **`rospy.init_node('image_publisher', anonymous=True)`**: Initializes the ROS node for publishing images.
-- **`image_pub.publish(bridge.cv2_to_imgmsg(frame, "bgr8"))`**: Converts the video frame from OpenCV format to a ROS image message and publishes it.
+1. Initialize the ROS node with `rospy.init_node('scan_node', anonymous=True)`.
+2. Subscribe to the `/scan` topic using `rospy.Subscriber("scan", LaserScan, scan_callback)`.
+3. Call the `move(True)` and `rotate(True)` functions to begin obstacle avoidance behavior.
+4. Use `rospy.spin()` to keep the node running.
 
-### 2. Image Processing Node
+## Dependencies
 
-The image processing node subscribes to the `tennis_ball_image` topic, processes the images to detect the tennis ball, and highlights the detected ball by drawing contours around it.
+- Python
+- ROS (Robot Operating System)
+- sensor_msgs for LaserScan messages
+- geometry_msgs for Twist messages
 
-- **`image_callback(ros_image)`**: Callback function that processes each incoming image.
-- **`filter_color(rgb_image, lower_bound_color, upper_bound_color)`**: Filters the image to isolate the color of the tennis ball in the HSV color space.
-- **`getContours(binary_image)`**: Finds the contours in the binary image resulting from color filtering.
-- **`draw_ball_contour(binary_image, rgb_image, contours)`**: Draws the contours around the detected tennis ball and displays the processed image.
+## Usage
 
-### 3. Tennis Ball Detection
-
-The detection of the tennis ball is based on its color (yellow) in the HSV color space:
-
-- **Color Filtering**: The `filter_color` function converts the image to the HSV color space and creates a binary mask where the yellow regions are highlighted.
-- **Contour Detection**: The `getContours` function identifies the contours in the binary mask, which correspond to potential tennis balls.
-- **Drawing Contours**: The `draw_ball_contour` function draws these contours on the original image and displays it.
-
-## How to Run the Code
-
-1. **Install ROS and OpenCV**: Ensure that ROS and OpenCV are installed and properly configured on your system.
-2. **Prepare the Video File**: Place the tennis ball video in the specified path (`/home/shreejit/catkin_ws2/src/ros_essentials_cpp/src/topic03_perception/video/tennis-ball-video.mp4`).
-3. **Run the Image Publisher Node**: Start the image publisher node to begin publishing video frames.
-4. **Run the Image Processing Node**: Start the image processing node to begin detecting and drawing contours around the tennis ball
-
-## Conclusion
-This project provides a simple yet effective method for detecting and tracking a tennis ball using ROS and OpenCV. The modular design allows for easy adaptation to other object detection tasks by adjusting the color filters and contour detection parameters.
+To use this node, ensure you have a ROS environment set up with a LIDAR sensor publishing to the `/scan` topic. Run the script to start the obstacle avoidance behavior.
