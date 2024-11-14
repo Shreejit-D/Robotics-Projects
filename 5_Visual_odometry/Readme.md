@@ -53,7 +53,6 @@ This section presents the results of pose estimation using two approaches:
 
 The integration of LIDAR data significantly improves pose estimation accuracy, though the error (~60 meters) indicates the need for more advanced filtering techniques such as Particle Filtering or Extended Kalman Filtering for real-world applications.
 
-![Pose Estimation Comparison](path_to_pose_estimation_comparison_image)
 
 ## Conclusion
 
